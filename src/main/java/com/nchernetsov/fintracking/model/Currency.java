@@ -12,8 +12,8 @@ public class Currency {
     @Column(name = "currency", nullable = false, length = 3)
     private String currencyCode;
 
-    public Currency(long amount, String currencyCode) {
-        this.amount = amount;
+    public Currency(double amount, String currencyCode) {
+        this.amount = (long) (amount * 100);
         this.currencyCode = currencyCode;
     }
 
@@ -35,6 +35,6 @@ public class Currency {
 
     @Override
     public String toString() {
-        return amount + " " + currencyCode;
+        return ((double) amount / 100) + " " + currencyCode;
     }
 }
