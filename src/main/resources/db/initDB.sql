@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS deposits;
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS global_seq;
 
@@ -22,3 +23,18 @@ CREATE TABLE user_roles
   CONSTRAINT user_roles_idx UNIQUE (user_id, role),
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
+
+CREATE TABLE deposits (
+  id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+  user_id       INTEGER NOT NULL,
+  bank_name     VARCHAR NOT NULL,
+  deposit_name  VARCHAR NOT NULL,
+  open_date     DATE NOT NULL,
+  duration_day  INTEGER NOT NULL,
+  currency      VARCHAR(3) NOT NULL,
+  money_amount_hundred  BIGINT NOT NULL,  -- В сотых долях (копейки, центы и т.п.)
+  percent       FLOAT NOT NULL,
+  comment       TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+CREATE UNIQUE INDEX deposits_unique_user_idx ON deposits(user_id)
