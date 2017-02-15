@@ -20,6 +20,18 @@
 
     <tx:annotation-driven/>
 
+    <beans profile="h2">
+        <context:property-placeholder location="classpath:db/h2.properties" system-properties-mode="OVERRIDE"/>
+
+        <!--no pooling-->
+        <bean id="dataSource"
+              class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+              p:driverClassName="org.h2.Driver"
+              p:url="${database.url}"
+              p:username="${database.username}"
+              p:password="${database.password}"/>
+    </beans>
+
     <beans profile="postgres">
         <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
 
@@ -59,6 +71,9 @@
                       p:showSql="${jpa.showSql}">
                 </bean>
             </property>
+
+            <context:component-scan base-package="com.nchernetsov.**.repository.datajpa"/>
+            <jpa:repositories base-package="com.nchernetsov.**.repository.datajpa"/>
         </bean>
 
         <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
@@ -68,8 +83,4 @@
         <bean class="com.nchernetsov.fintracking.repository.JpaUtil"/>
     </beans>
 
-    <beans profile="datajpa">
-        <context:component-scan base-package="com.nchernetsov.**.repository.datajpa"/>
-        <jpa:repositories base-package="com.nchernetsov.**.repository.datajpa"/>
-    </beans>
 </beans>
