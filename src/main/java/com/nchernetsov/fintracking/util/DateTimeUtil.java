@@ -1,4 +1,4 @@
-package com.nchernetsov.fintracing.util;
+package com.nchernetsov.fintracking.util;
 
 import org.springframework.util.StringUtils;
 
