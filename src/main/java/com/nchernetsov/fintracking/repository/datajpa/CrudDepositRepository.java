@@ -18,6 +18,7 @@ public interface CrudDepositRepository extends JpaRepository<Deposit, Integer> {
     int delete(@Param("id") int id, @Param("userId") int userId);
 
     @Override
+    @Transactional
     Deposit save(Deposit iter);
 
     @Query("SELECT d FROM Deposit d WHERE d.user.id=:userId")
