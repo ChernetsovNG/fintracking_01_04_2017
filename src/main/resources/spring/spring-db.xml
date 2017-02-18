@@ -18,6 +18,8 @@
         <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
     </jdbc:initialize-database>
 
+    <!-- Choose profile from (hsqldb, postgres, tomcat) and (datajpa,jpa) -->
+
     <tx:annotation-driven/>
 
     <beans profile="h2">
@@ -44,11 +46,11 @@
     </beans>
 
     <beans profile="tomcat">
-        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/fintracking"/>
+        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/topjava"/>
         <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
     </beans>
 
-    <beans profile="datajpa">
+    <beans profile="jpa,datajpa">
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
               p:dataSource-ref="dataSource"
               p:packagesToScan="com.nchernetsov.**.model">
@@ -58,6 +60,7 @@
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
                            value="${hibernate.use_sql_comments}"/>
+                    <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
 
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}" value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory"/>
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
@@ -71,9 +74,6 @@
                       p:showSql="${jpa.showSql}">
                 </bean>
             </property>
-
-            <context:component-scan base-package="com.nchernetsov.**.repository.datajpa"/>
-            <jpa:repositories base-package="com.nchernetsov.**.repository.datajpa"/>
         </bean>
 
         <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
@@ -83,4 +83,12 @@
         <bean class="com.nchernetsov.fintracking.repository.JpaUtil"/>
     </beans>
 
+    <beans profile="jpa">
+        <context:component-scan base-package="com.nchernetsov.**.repository.jpa"/>
+    </beans>
+
+    <beans profile="datajpa">
+        <context:component-scan base-package="com.nchernetsov.**.repository.datajpa"/>
+        <jpa:repositories base-package="com.nchernetsov.**.repository.datajpa"/>
+    </beans>
 </beans>

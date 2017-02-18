@@ -52,6 +52,10 @@ public class User extends NamedEntity {
     @BatchSize(size = 200)
     private Set<Role> roles;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OrderBy("closeDate DESC")
+    protected List<Deposit> deposits;
+
     public User() {
     }
 
@@ -105,6 +109,10 @@ public class User extends NamedEntity {
 
     public Set<Role> getRoles() {
         return roles;
+    }
+
+    public List<Deposit> getDeposits() {
+        return deposits;
     }
 
     public void setRoles(Collection<Role> roles) {
