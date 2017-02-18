@@ -19,6 +19,7 @@ import java.util.*;
         @NamedQuery(name = User.ALL_SORTED, query = "SELECT u FROM User u ORDER BY u.name, u.email"),
 })
 @Entity
+@NamedEntityGraph(name = User.GRAPH_WITH_DEPOSITS, attributeNodes = {@NamedAttributeNode("deposits")})
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
 public class User extends NamedEntity {
 
@@ -53,7 +54,6 @@ public class User extends NamedEntity {
     private Set<Role> roles;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    @OrderBy("closeDate DESC")
     protected List<Deposit> deposits;
 
     public User() {

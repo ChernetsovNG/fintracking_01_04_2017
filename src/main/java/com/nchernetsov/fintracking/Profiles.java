@@ -2,7 +2,7 @@ package com.nchernetsov.fintracking;
 
 public class Profiles {
     public static final String
-            POSTGRES = "postgred",
+            POSTGRES = "postgres",
             H2 = "h2",
             JPA = "jpa",
             DATAJPA = "datajpa";

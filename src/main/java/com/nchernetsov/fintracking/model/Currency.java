@@ -12,6 +12,9 @@ public class Currency {
     @Column(name = "currency", nullable = false, length = 3)
     private String currencyCode;
 
+    public Currency() {
+    }
+
     public Currency(double amount, String currencyCode) {
         this.amount = (long) (amount * 100);
         this.currencyCode = currencyCode;

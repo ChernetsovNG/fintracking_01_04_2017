@@ -34,6 +34,7 @@ public class Deposit extends BaseEntity {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate openDate;
 
+    @Transient
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate closeDate;
 
