@@ -15,6 +15,7 @@ public class Currency {
     public Currency() {
     }
 
+    //Валюта приходит в "рублях", а хранится в таблице в "копейках"
     public Currency(double amount, String currencyCode) {
         this.amount = (long) (amount * 100);
         this.currencyCode = currencyCode;
