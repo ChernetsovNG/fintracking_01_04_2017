@@ -17,9 +17,9 @@ public class DataJpaUserServiceTest extends AbstractJpaUserServiceTest {
 
     @Test
     public void testGetWithMeals() throws Exception {
-        User user = service.getWithDeposits(USER_ID);
-        MATCHER.assertEquals(USER, user);
-        DepositTestData.MATCHER.assertCollectionEquals(Arrays.asList(DepositTestData.DEPOSIT1), user.getDeposits());
+        User user = service.getWithDeposits(NCh_ID);
+        MATCHER.assertEquals(N_Ch, user);
+        DepositTestData.MATCHER.assertCollectionEquals(Arrays.asList(DepositTestData.DEPOSIT2, DepositTestData.DEPOSIT3), user.getDeposits());
     }
 
     @Test(expected = NotFoundException.class)

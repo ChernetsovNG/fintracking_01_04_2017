@@ -15,15 +15,19 @@ public class DepositTestData {
     public static final ModelMatcher<Deposit> MATCHER = ModelMatcher.of(Deposit.class);
 
     public static final int DEPOSIT1_ID = START_SEQ + 3;
-    public static final int NCh_DEPOSIT_ID = START_SEQ + 4;
+    public static final int NCh_DEPOSIT1_ID = START_SEQ + 4;
+    public static final int NCh_DEPOSIT2_ID = START_SEQ + 5;
 
     public static final Deposit DEPOSIT1 = new Deposit(DEPOSIT1_ID, "Тестовый банк", "Тестовый вклад",
             of(2017, Month.JANUARY, 15), 180, new Currency(4000, "USD"), 3.5, "Комментарий");
 
-    public static final Deposit DEPOSIT2 = new Deposit(NCh_DEPOSIT_ID, "Кредит Европа банк", "Летнее предложение на 1 год",
-            of(2016, Month.AUGUST, 11), 368, new Currency(200000, "RUB"), 10.5, "Комментарий к вкладу");
+    public static final Deposit DEPOSIT2 = new Deposit(NCh_DEPOSIT1_ID, "Кредит Европа банк", "Летнее предложение на 1 год",
+            of(2016, Month.AUGUST, 11), 368, new Currency(200000, "RUB"), 10.5, "Комментарий к вкладу 1");
 
-    public static final List<Deposit> DEPOSITS = Arrays.asList(DEPOSIT2, DEPOSIT1);
+    public static final Deposit DEPOSIT3 = new Deposit(NCh_DEPOSIT2_ID, "Траст", "Вклад",
+            of(2016, Month.DECEMBER, 12), 250, new Currency(5000, "EUR"), 5, "Комментарий к вкладу 2");
+
+    public static final List<Deposit> DEPOSITS = Arrays.asList(DEPOSIT3, DEPOSIT2, DEPOSIT1);
 
     public static Deposit getCreated() {
         return new Deposit(null, "Новый банк", "Созданный вклад",

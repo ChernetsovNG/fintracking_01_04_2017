@@ -37,4 +37,3 @@ CREATE TABLE deposits (
   comment       TEXT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
-CREATE UNIQUE INDEX deposits_unique_user_idx ON deposits(user_id)
