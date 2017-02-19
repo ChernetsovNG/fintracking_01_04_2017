@@ -335,6 +335,13 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>RELEASE</version>
         </dependency>
+
+        <!--money library-->
+        <dependency>
+            <groupId>org.joda</groupId>
+            <artifactId>joda-money</artifactId>
+            <version>0.12</version>
+        </dependency>
     </dependencies>
 
     <profiles>
