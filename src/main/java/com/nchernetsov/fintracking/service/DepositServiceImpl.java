@@ -4,12 +4,14 @@ import com.nchernetsov.fintracking.model.Deposit;
 import com.nchernetsov.fintracking.repository.DepositRepository;
 import com.nchernetsov.fintracking.util.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.Collection;
 
 import static com.nchernetsov.fintracking.util.ValidationUtil.checkNotFoundWithId;
 
+@Service
 public class DepositServiceImpl implements DepositService {
 
     @Autowired

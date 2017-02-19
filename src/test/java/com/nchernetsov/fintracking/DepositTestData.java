@@ -21,13 +21,13 @@ public class DepositTestData {
     public static final Deposit DEPOSIT1 = new Deposit(DEPOSIT1_ID, "Тестовый банк", "Тестовый вклад",
             of(2017, Month.JANUARY, 15), 180, new Currency(4000, "USD"), 3.5, "Комментарий");
 
-    public static final Deposit DEPOSIT2 = new Deposit(NCh_DEPOSIT1_ID, "Кредит Европа банк", "Летнее предложение на 1 год",
+    public static final Deposit NCh_DEPOSIT1 = new Deposit(NCh_DEPOSIT1_ID, "Кредит Европа банк", "Летнее предложение на 1 год",
             of(2016, Month.AUGUST, 11), 368, new Currency(200000, "RUB"), 10.5, "Комментарий к вкладу 1");
 
-    public static final Deposit DEPOSIT3 = new Deposit(NCh_DEPOSIT2_ID, "Траст", "Вклад",
+    public static final Deposit NCh_DEPOSIT2 = new Deposit(NCh_DEPOSIT2_ID, "Траст", "Вклад",
             of(2016, Month.DECEMBER, 12), 250, new Currency(5000, "EUR"), 5, "Комментарий к вкладу 2");
 
-    public static final List<Deposit> DEPOSITS = Arrays.asList(DEPOSIT3, DEPOSIT2, DEPOSIT1);
+    public static final List<Deposit> DEPOSITS = Arrays.asList(NCh_DEPOSIT2, NCh_DEPOSIT1, DEPOSIT1);
 
     public static Deposit getCreated() {
         return new Deposit(null, "Новый банк", "Созданный вклад",
@@ -35,7 +35,7 @@ public class DepositTestData {
     }
 
     public static Deposit getUpdated() {
-        return new Deposit(DEPOSIT1_ID, "Тестовый банк", "Тестовый вклад",
+        return new Deposit(DEPOSIT1_ID, "Тестовый банк", "Обновлённый вклад",
                 DEPOSIT1.getOpenDate(), 180, new Currency(5000, "USD"), 5.0, "Обновлённый комментарий");
     }
 }

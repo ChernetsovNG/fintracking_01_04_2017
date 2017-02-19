@@ -10,9 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-@SuppressWarnings("JpaQlInspection")
 @NamedQueries({
-        @NamedQuery(name = Deposit.ALL_SORTED, query = "SELECT d FROM Deposit d WHERE d.user.id=:userId"),
+        @NamedQuery(name = Deposit.ALL_SORTED, query = "SELECT d FROM Deposit d WHERE d.user.id=:userId ORDER BY d.closeDate"),
         @NamedQuery(name = Deposit.DELETE, query = "DELETE FROM Deposit d WHERE d.id=:id AND d.user.id=:userId")
 })
 @Entity
@@ -34,7 +33,8 @@ public class Deposit extends BaseEntity {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate openDate;
 
-    @Transient
+    @Column(name = "close_date", nullable = false)
+    @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate closeDate;
 

@@ -21,10 +21,9 @@ public interface CrudDepositRepository extends JpaRepository<Deposit, Integer> {
     @Transactional
     Deposit save(Deposit iter);
 
-    @Query("SELECT d FROM Deposit d WHERE d.user.id=:userId")
+    @Query("SELECT d FROM Deposit d WHERE d.user.id=:userId ORDER BY d.closeDate")
     List<Deposit> getAll(@Param("userId") int userId);
 
     @Query("SELECt d FROM Deposit d JOIN FETCH d.user WHERE d.id=?1 AND d.user.id=?2")
     Deposit getWithUser(int id, int userId);
 }
-

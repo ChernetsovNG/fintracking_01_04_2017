@@ -30,6 +30,7 @@ CREATE TABLE deposits (
   bank_name     VARCHAR NOT NULL,
   deposit_name  VARCHAR NOT NULL,
   open_date     DATE NOT NULL,
+  close_date    DATE NOT NULL,
   duration_day  INTEGER NOT NULL,
   currency      VARCHAR(3) NOT NULL,
   money_amount_hundred  BIGINT NOT NULL,  -- В сотых долях (копейки, центы и т.п.)
