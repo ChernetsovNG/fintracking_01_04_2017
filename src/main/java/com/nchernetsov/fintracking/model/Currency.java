@@ -1,5 +1,6 @@
 package com.nchernetsov.fintracking.model;
 
+import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 
 import javax.persistence.Column;
@@ -21,10 +22,10 @@ public class Currency {
     public Currency() {
     }
 
-    public Currency(Money money) {
-        this.money = money;
-        this.amount = money.getAmount().doubleValue();
-        this.currencyCode = money.getCurrencyUnit().getCurrencyCode();
+    public Currency(double amount, String currencyCode) {
+        this.money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
+        this.amount = amount;
+        this.currencyCode = currencyCode;
     }
 
     public Money getMoney() {
