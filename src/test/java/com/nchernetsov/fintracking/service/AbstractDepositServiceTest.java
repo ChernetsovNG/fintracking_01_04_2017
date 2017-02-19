@@ -1,8 +1,8 @@
 package com.nchernetsov.fintracking.service;
 
-
 import com.nchernetsov.fintracking.model.Deposit;
 import com.nchernetsov.fintracking.util.exception.NotFoundException;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +17,12 @@ public abstract class AbstractDepositServiceTest extends AbstractServiceTest {
 
     @Autowired
     protected DepositService service;
+
+    @Test
+    public void moneyNotNullTest() {
+        Deposit deposit = service.get(NCh_DEPOSIT1_ID, NCh_ID);
+        Assert.assertNotNull(deposit.getMoney());
+    }
 
     @Test
     public void testDelete() throws Exception {

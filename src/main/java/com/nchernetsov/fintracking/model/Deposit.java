@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.joda.money.Money;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -119,6 +120,8 @@ public class Deposit extends BaseEntity {
     public Currency getCurrency() {
         return currency;
     }
+
+    public Money getMoney() { return currency.getMoney(); }
 
     public void setCurrency(Currency currency) {
         this.currency = currency;

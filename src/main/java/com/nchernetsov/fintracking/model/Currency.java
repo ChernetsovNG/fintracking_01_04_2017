@@ -7,9 +7,9 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
 
-//Wrapper class to persist in database money_amount and currency_code
 @Embeddable
 public class Currency {
+
     @Transient
     private Money money;
 
@@ -23,19 +23,33 @@ public class Currency {
     }
 
     public Currency(double amount, String currencyCode) {
-        this.money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
         this.amount = amount;
         this.currencyCode = currencyCode;
     }
 
     public Money getMoney() {
+        if (money == null) {
+            money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
+        }
         return money;
     }
 
-    public void setMoney(Money money) {
-        this.money = money;
-        this.amount = money.getAmount().doubleValue();
-        this.currencyCode = money.getCurrencyUnit().getCurrencyCode();
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+        this.money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+        this.money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
     }
 
     @Override
