@@ -1,44 +1,44 @@
 package com.nchernetsov.fintracking.model;
 
+import org.joda.money.Money;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
+//Wrapper class to persist in database money_amount and currency_code
 @Embeddable
 public class Currency {
+    @Transient
+    private Money money;
 
-    @Column(name = "money_amount_hundred", nullable = false)
-    private long amount;
+    @Column(name = "money_amount", nullable = false)
+    private double amount;
 
-    @Column(name = "currency", nullable = false, length = 3)
+    @Column(name = "currency", nullable = false)
     private String currencyCode;
 
     public Currency() {
     }
 
-    //Валюта приходит в "рублях", а хранится в таблице в "копейках"
-    public Currency(double amount, String currencyCode) {
-        this.amount = (long) (amount * 100);
-        this.currencyCode = currencyCode;
+    public Currency(Money money) {
+        this.money = money;
+        this.amount = money.getAmount().doubleValue();
+        this.currencyCode = money.getCurrencyUnit().getCurrencyCode();
     }
 
-    public long getAmount() {
-        return amount;
+    public Money getMoney() {
+        return money;
     }
 
-    public void setAmount(long amount) {
-        this.amount = amount;
-    }
-
-    public String getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(String currencyCode) {
-        this.currencyCode = currencyCode;
+    public void setMoney(Money money) {
+        this.money = money;
+        this.amount = money.getAmount().doubleValue();
+        this.currencyCode = money.getCurrencyUnit().getCurrencyCode();
     }
 
     @Override
     public String toString() {
-        return ((double) amount / 100) + " " + currencyCode;
+        return (amount + " " + currencyCode);
     }
 }

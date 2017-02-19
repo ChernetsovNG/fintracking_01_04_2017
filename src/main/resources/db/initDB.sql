@@ -33,8 +33,8 @@ CREATE TABLE deposits (
   close_date    DATE NOT NULL,
   duration_day  INTEGER NOT NULL,
   currency      VARCHAR(3) NOT NULL,
-  money_amount_hundred  BIGINT NOT NULL,  -- В сотых долях (копейки, центы и т.п.)
-  percent       FLOAT NOT NULL,
+  money_amount  DECIMAL NOT NULL,
+  percent       DECIMAL NOT NULL,
   comment       TEXT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
