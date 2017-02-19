@@ -5,13 +5,9 @@ import org.joda.money.Money;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Transient;
 
 @Embeddable
 public class Currency {
-
-    @Transient
-    private Money money;
 
     @Column(name = "money_amount", nullable = false)
     private double amount;
@@ -28,10 +24,7 @@ public class Currency {
     }
 
     public Money getMoney() {
-        if (money == null) {
-            money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
-        }
-        return money;
+        return Money.of(CurrencyUnit.getInstance(currencyCode), amount);
     }
 
     public double getAmount() {
@@ -40,7 +33,6 @@ public class Currency {
 
     public void setAmount(double amount) {
         this.amount = amount;
-        this.money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
     }
 
     public String getCurrencyCode() {
@@ -49,7 +41,6 @@ public class Currency {
 
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
-        this.money = Money.of(CurrencyUnit.getInstance(currencyCode), amount);
     }
 
     @Override
