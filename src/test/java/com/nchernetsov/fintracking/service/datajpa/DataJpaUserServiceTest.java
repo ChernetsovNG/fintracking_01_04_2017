@@ -26,4 +26,5 @@ public class DataJpaUserServiceTest extends AbstractJpaUserServiceTest {
     public void testGetWithDepositsNotFound() throws Exception {
         service.getWithDeposits(1);
     }
+
 }

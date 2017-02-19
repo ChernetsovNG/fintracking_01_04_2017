@@ -3,10 +3,10 @@ DELETE FROM users;
 ALTER SEQUENCE global_seq RESTART WITH 100000;
 
 INSERT INTO users (name, email, password)
-VALUES ('User', 'user@gmail.com', 'user');
+VALUES ('User', 'user@gmail.com', 'user111');
 
 INSERT INTO users (name, email, password)
-VALUES ('Admin', 'admin@gmail.com', 'admin');
+VALUES ('Admin', 'admin@gmail.com', 'admin11');
 
 INSERT INTO users (name, email, password)
 VALUES ('N_Chernetsov', 'n.chernetsov86@gmail.com', 'morganae7');

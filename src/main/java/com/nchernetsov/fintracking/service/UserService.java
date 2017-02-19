@@ -2,7 +2,7 @@ package com.nchernetsov.fintracking.service;
 
 import com.nchernetsov.fintracking.model.User;
 import com.nchernetsov.fintracking.to.UserTo;
-import javassist.NotFoundException;
+import com.nchernetsov.fintracking.util.exception.NotFoundException;
 
 import java.util.List;
 
