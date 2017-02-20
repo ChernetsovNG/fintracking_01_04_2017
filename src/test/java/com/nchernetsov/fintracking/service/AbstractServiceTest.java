@@ -62,7 +62,7 @@ abstract public class AbstractServiceTest {
     }
 
     public boolean isJpaBased() {
-        return env.acceptsProfiles(Profiles.JPA, Profiles.DATAJPA);
+        return env.acceptsProfiles(Profiles.DATAJPA);
     }
 
     public static <T extends Throwable> void validateRootCause(Runnable runnable, Class<T> exceptionClass) {

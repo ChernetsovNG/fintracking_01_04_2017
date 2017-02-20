@@ -4,7 +4,6 @@ public class Profiles {
     public static final String
             POSTGRES = "postgres",
             H2 = "h2",
-            JPA = "jpa",
             DATAJPA = "datajpa";
 
     public static final String DB_IMPLEMENTATION = DATAJPA;

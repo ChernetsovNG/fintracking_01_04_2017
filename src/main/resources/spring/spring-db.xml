@@ -50,7 +50,7 @@
         <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
     </beans>
 
-    <beans profile="jpa,datajpa">
+    <beans>
         <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
               p:dataSource-ref="dataSource"
               p:packagesToScan="com.nchernetsov.**.model">
@@ -81,14 +81,9 @@
               p:entityManagerFactory-ref="entityManagerFactory"/>
 
         <bean class="com.nchernetsov.fintracking.repository.JpaUtil"/>
-    </beans>
 
-    <beans profile="jpa">
-        <context:component-scan base-package="com.nchernetsov.**.repository.jpa"/>
-    </beans>
-
-    <beans profile="datajpa">
         <context:component-scan base-package="com.nchernetsov.**.repository.datajpa"/>
         <jpa:repositories base-package="com.nchernetsov.**.repository.datajpa"/>
     </beans>
+
 </beans>
