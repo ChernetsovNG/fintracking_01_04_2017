@@ -5,7 +5,7 @@
     <jmxConfigurator/>
 
     <appender name="file" class="ch.qos.logback.core.FileAppender">
-        <file>${FINTRACKING_ROOT}/log/topjava.log</file>
+        <file>${FINTRACKING_ROOT}/log/fintracking.log</file>
 
         <encoder>
             <charset>UTF-8</charset>
