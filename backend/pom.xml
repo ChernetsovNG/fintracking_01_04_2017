@@ -11,8 +11,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.nchernetsov</groupId>
-    <artifactId>fintracking-backend</artifactId>
+    <artifactId>fintracking</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Finance Tracking (backend)</name>
@@ -86,7 +85,7 @@
                         <containerId>tomcat8x</containerId>
                         <systemProperties>
                             <file.encoding>UTF-8</file.encoding>
-                            <spring.profiles.active>tomcat,datajpa</spring.profiles.active>
+                            <spring.profiles.active>tomcat</spring.profiles.active>
                         </systemProperties>
                         <dependencies>
                             <dependency>
@@ -106,8 +105,8 @@
                     </configuration>
                     <deployables>
                         <deployable>
-                            <groupId>com.nchernetsov</groupId>
-                            <artifactId>FinTracking</artifactId>
+                            <groupId>com.nchernetsov.fintracking</groupId>
+                            <artifactId>fintracking</artifactId>
                             <type>war</type>
                             <properties>
                                 <context>${project.build.finalName}</context>
