@@ -3,6 +3,7 @@ package com.nchernetsov.fintracking.to;
 import com.nchernetsov.fintracking.util.HasId;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
 
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -13,13 +14,16 @@ public class UserTo implements HasId, Serializable {
     private Integer id;
 
     @NotBlank
+    @SafeHtml
     private String name;
 
     @Email
     @NotBlank
+    @SafeHtml
     private String email;
 
     @Size(min = 5, max = 64, message = " must between 5 and 64 characters")
+    @SafeHtml
     private String password;
 
     public UserTo() {
