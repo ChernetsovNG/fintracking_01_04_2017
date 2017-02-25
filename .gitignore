@@ -2,4 +2,9 @@
 /.idea/
 /target/
 /FinTracking.iml
-/log/fintracking.log
+/backend/log/fintracking.log
+/backend/fintracking-backend.iml
+Будет удалено backend/fintracking-backend.iml
+Будет удалено backend/log/
+Будет удалено backend/target/
+Будет удалено frontend/

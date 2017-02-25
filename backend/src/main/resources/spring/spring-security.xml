@@ -6,13 +6,13 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http pattern="/resources/**" security="none"/>
+    <http pattern="/resources/css" security="none"/>
     <http pattern="/webjars/**" security="none"/>
 
     <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
         <http-basic/>
         <intercept-url pattern="/rest/admin/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>
 
@@ -20,7 +20,7 @@
         <intercept-url pattern="/login" access="permitAll"/>
 
         <intercept-url pattern="/**/admin/**" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/**" access="isAuthenticated()"/>
+        <intercept-url pattern="/" access="isAuthenticated()"/>
 
         <form-login login-page="/login" default-target-url="/deposits"
                     authentication-failure-url="/login?error=true"
