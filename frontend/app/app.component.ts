@@ -20,6 +20,8 @@ import {PostsComponent} from './posts.component';
             <router-outlet></router-outlet>
         </div>
     `,
-    directives: [NavbarComponent, ROUTER_DIRECTIVES]
+    directives: [NavbarComponent, ROUTER_DIRECTIVES],
+    providers: [UsersComponent]
 })
-export class AppComponent { }
+export class AppComponent { 
+}

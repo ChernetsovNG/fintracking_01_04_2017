@@ -1,4 +1,4 @@
-System.register(['angular2/core', './navbar.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,26 +10,32 @@ System.register(['angular2/core', './navbar.component'], function(exports_1, con
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, navbar_component_1;
+    var core_1, user_service_1;
     var UsersComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (navbar_component_1_1) {
-                navbar_component_1 = navbar_component_1_1;
+            function (user_service_1_1) {
+                user_service_1 = user_service_1_1;
             }],
         execute: function() {
             UsersComponent = (function () {
-                function UsersComponent() {
+                function UsersComponent(_service) {
+                    this._service = _service;
                 }
+                UsersComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this._service.getUsers()
+                        .subscribe(function (users) { return _this.users = users; });
+                };
                 UsersComponent = __decorate([
                     core_1.Component({
-                        template: "\n        <h1>Users</h1>\n    ",
-                        directives: [navbar_component_1.NavbarComponent]
+                        templateUrl: 'app/users.component.html',
+                        providers: [user_service_1.UserService]
                     }), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [user_service_1.UserService])
                 ], UsersComponent);
                 return UsersComponent;
             }());
