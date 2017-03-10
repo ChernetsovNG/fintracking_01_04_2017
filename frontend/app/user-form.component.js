@@ -38,6 +38,12 @@ System.register(['angular2/core', 'angular2/common', './basicValidators'], funct
                         })
                     });
                 }
+                UserFormComponent.prototype.routerCanDeactivate = function (next, previous) {
+                    if (this.form.dirty) {
+                        return confirm("You have unsaved changes. Are you sure you want to navigate away?");
+                    }
+                    return true;
+                };
                 UserFormComponent = __decorate([
                     core_1.Component({
                         templateUrl: 'app/user-form.component.html'
