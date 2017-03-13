@@ -5,4 +5,7 @@
 /backend/log/fintracking.log
 /backend/fintracking-backend.iml
 /frontend/node_modules/
+/frontend/app/.DS_Store
+/backend/target/
+
 
