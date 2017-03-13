@@ -9,6 +9,11 @@ export class UserService {
 	constructor(private _http: Http){
 	}
 
+	getUser(userId) {
+		return this._http.get(this._url + "/" + userId)
+			.map(res => res.json());
+	}
+
 	getUsers(){
 		return this._http.get(this._url)
 			.map(res => res.json());
