@@ -53,10 +53,16 @@ export class UserFormComponent implements OnInit, CanDeactivate {
     }
 
     save() {
-        this._userService.addUser(this.form.value)
-            .subscribe(x => {
-                this._router.navigate(['Users']);
-            });
+        var result;
+
+        if (this.user.id)
+            result = this._userService.updateUser(this.user);
+        else
+            result = this._userService.addUser(this.user);
+
+        result.subscribe(x => {
+            this._router.navigate(['Users']);
+        });
     }
 
     routerCanDeactivate(next, previous) {
