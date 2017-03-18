@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'angular2/router', './basicValidators', './user.service', './user'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'angular2/router', '../validator/basicValidators', '../service/user.service', '../classes/user'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -42,13 +42,8 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './basic
                     this.form = fb.group({
                         name: ['', common_1.Validators.required],
                         email: ['', basicValidators_1.BasicValidators.email],
-                        phone: [],
-                        address: fb.group({
-                            street: [],
-                            suite: [],
-                            city: [],
-                            zipcode: []
-                        })
+                        registered: [],
+                        enabled: []
                     });
                 }
                 UserFormComponent.prototype.ngOnInit = function () {
@@ -83,7 +78,7 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', './basic
                 };
                 UserFormComponent = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/user-form.component.html',
+                        templateUrl: '../html/user-form.component.html',
                         providers: [user_service_1.UserService]
                     }), 
                     __metadata('design:paramtypes', [common_1.FormBuilder, router_1.Router, router_1.RouteParams, user_service_1.UserService])

@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../service/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -47,7 +47,7 @@ System.register(['angular2/core', 'angular2/router', './user.service'], function
                 };
                 UsersComponent = __decorate([
                     core_1.Component({
-                        templateUrl: 'app/users.component.html',
+                        templateUrl: '../html/users.component.html',
                         providers: [user_service_1.UserService],
                         directives: [router_1.RouterLink]
                     }), 

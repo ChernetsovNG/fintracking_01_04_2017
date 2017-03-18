@@ -2,12 +2,12 @@ import {Component, OnInit} from 'angular2/core';
 import {FormBuilder, ControlGroup, Validators} from 'angular2/common';
 import {CanDeactivate, Router, RouteParams} from 'angular2/router';
 
-import {BasicValidators} from './basicValidators';
-import {UserService} from './user.service';
-import {User} from './user';
+import {BasicValidators} from '../validator/basicValidators';
+import {UserService} from '../service/user.service';
+import {User} from '../classes/user';
 
 @Component({
-    templateUrl: 'app/user-form.component.html',
+    templateUrl: 'app/html/user-form.component.html',
     providers: [UserService]
 })
 export class UserFormComponent implements OnInit, CanDeactivate {
@@ -24,13 +24,8 @@ export class UserFormComponent implements OnInit, CanDeactivate {
         this.form = fb.group({
             name: ['', Validators.required],
             email: ['', BasicValidators.email],
-            phone: [],
-            address: fb.group({
-                street: [],
-                suite: [],
-                city: [],
-                zipcode: []
-            })
+            registered: [],
+            enabled: []
         });
     }
 

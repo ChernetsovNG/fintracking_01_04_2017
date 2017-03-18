@@ -5,6 +5,8 @@
  	    <tr>
  		    <th>Name</th>
  			<th>Email</th>
+			<th>Registered</th>
+			<th>Enabled</th>
  			<th>Edit</th>
  			<th>Delete</th>
  		</tr>
@@ -13,6 +15,8 @@
  		<tr *ngFor="#user of users">
  			<td>{{ user.name }}</td>
  			<td>{{ user.email }}</td>
+            <td>{{ user.registered }}</td>
+            <td>{{ user.enabled }}</td>
  			<td>
 				 <a [routerLink]="['EditUser', { id: user.id }]">
                  <i class="glyphicon glyphicon-edit"></i></a>

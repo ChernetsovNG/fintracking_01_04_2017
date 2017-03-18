@@ -25,7 +25,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map'], fun
             UserService = (function () {
                 function UserService(_http) {
                     this._http = _http;
-                    this._url = "http://jsonplaceholder.typicode.com/users";
+                    this._url = "http://localhost:8080/fintracking/rest/admin/users";
                 }
                 UserService.prototype.getUser = function (userId) {
                     return this._http.get(this.getUserUrl(userId))
