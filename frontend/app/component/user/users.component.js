@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', '../service/user.service'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', '../../service/user.service'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -24,37 +24,34 @@ System.register(['angular2/core', 'angular2/router', '../service/user.service'],
                 user_service_1 = user_service_1_1;
             }],
         execute: function() {
-            UsersComponent = (function () {
-                function UsersComponent(_service) {
+            let UsersComponent = class UsersComponent {
+                constructor(_service) {
                     this._service = _service;
                 }
-                UsersComponent.prototype.ngOnInit = function () {
-                    var _this = this;
+                ngOnInit() {
                     this._service.getUsers()
-                        .subscribe(function (users) { return _this.users = users; });
-                };
-                UsersComponent.prototype.deleteUser = function (user) {
-                    var _this = this;
+                        .subscribe(users => this.users = users);
+                }
+                deleteUser(user) {
                     if (confirm("Are you sure you want to delete " + user.name + "?")) {
                         var index = this.users.indexOf(user);
                         this.users.splice(index, 1);
                         this._service.deleteUser(user.id)
-                            .subscribe(null, function (err) {
+                            .subscribe(null, err => {
                             alert("Could not delete the user.");
-                            _this.users.splice(index, 0, user);
+                            this.users.splice(index, 0, user);
                         });
                     }
-                };
-                UsersComponent = __decorate([
-                    core_1.Component({
-                        templateUrl: '../html/users.component.html',
-                        providers: [user_service_1.UserService],
-                        directives: [router_1.RouterLink]
-                    }), 
-                    __metadata('design:paramtypes', [user_service_1.UserService])
-                ], UsersComponent);
-                return UsersComponent;
-            }());
+                }
+            };
+            UsersComponent = __decorate([
+                core_1.Component({
+                    templateUrl: 'app/html/users.component.html',
+                    providers: [user_service_1.UserService],
+                    directives: [router_1.RouterLink]
+                }), 
+                __metadata('design:paramtypes', [user_service_1.UserService])
+            ], UsersComponent);
             exports_1("UsersComponent", UsersComponent);
         }
     }

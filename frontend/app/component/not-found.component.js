@@ -18,17 +18,16 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            NotFoundComponent = (function () {
-                function NotFoundComponent() {
-                }
-                NotFoundComponent = __decorate([
-                    core_1.Component({
-                        template: "\n        <h1>Not Found</h1>\n    "
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], NotFoundComponent);
-                return NotFoundComponent;
-            }());
+            let NotFoundComponent = class NotFoundComponent {
+            };
+            NotFoundComponent = __decorate([
+                core_1.Component({
+                    template: `
+        <h1>Not Found</h1>
+    `
+                }), 
+                __metadata('design:paramtypes', [])
+            ], NotFoundComponent);
             exports_1("NotFoundComponent", NotFoundComponent);
         }
     }

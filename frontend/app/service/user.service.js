@@ -22,40 +22,39 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/add/operator/map'], fun
             },
             function (_1) {}],
         execute: function() {
-            UserService = (function () {
-                function UserService(_http) {
+            let UserService = class UserService {
+                constructor(_http) {
                     this._http = _http;
                     this._url = "http://localhost:8080/fintracking/rest/admin/users";
                 }
-                UserService.prototype.getUser = function (userId) {
+                getUser(userId) {
                     return this._http.get(this.getUserUrl(userId))
-                        .map(function (res) { return res.json(); });
-                };
-                UserService.prototype.getUsers = function () {
+                        .map(res => res.json());
+                }
+                getUsers() {
                     return this._http.get(this._url)
-                        .map(function (res) { return res.json(); });
-                };
-                UserService.prototype.addUser = function (user) {
+                        .map(res => res.json());
+                }
+                addUser(user) {
                     return this._http.post(this._url, JSON.stringify(user))
-                        .map(function (res) { return res.json(); });
-                };
-                UserService.prototype.updateUser = function (user) {
+                        .map(res => res.json());
+                }
+                updateUser(user) {
                     return this._http.put(this.getUserUrl(user.id), JSON.stringify(user))
-                        .map(function (res) { return res.json; });
-                };
-                UserService.prototype.deleteUser = function (userId) {
+                        .map(res => res.json);
+                }
+                deleteUser(userId) {
                     return this._http.delete(this.getUserUrl(userId))
-                        .map(function (res) { return res.json(); });
-                };
-                UserService.prototype.getUserUrl = function (userId) {
+                        .map(res => res.json());
+                }
+                getUserUrl(userId) {
                     return this._url + "/" + userId;
-                };
-                UserService = __decorate([
-                    core_1.Injectable(), 
-                    __metadata('design:paramtypes', [http_1.Http])
-                ], UserService);
-                return UserService;
-            }());
+                }
+            };
+            UserService = __decorate([
+                core_1.Injectable(), 
+                __metadata('design:paramtypes', [http_1.Http])
+            ], UserService);
             exports_1("UserService", UserService);
         }
     }

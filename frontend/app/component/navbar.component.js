@@ -21,24 +21,23 @@ System.register(['angular2/core', 'angular2/router'], function(exports_1, contex
                 router_1 = router_1_1;
             }],
         execute: function() {
-            NavbarComponent = (function () {
-                function NavbarComponent(_router) {
+            let NavbarComponent = class NavbarComponent {
+                constructor(_router) {
                     this._router = _router;
                 }
-                NavbarComponent.prototype.isCurrentRoute = function (route) {
+                isCurrentRoute(route) {
                     var instruction = this._router.generate(route);
                     return this._router.isRouteActive(instruction);
-                };
-                NavbarComponent = __decorate([
-                    core_1.Component({
-                        selector: 'navbar',
-                        templateUrl: 'app/html/navbar.component.html',
-                        directives: [router_1.ROUTER_DIRECTIVES]
-                    }), 
-                    __metadata('design:paramtypes', [router_1.Router])
-                ], NavbarComponent);
-                return NavbarComponent;
-            }());
+                }
+            };
+            NavbarComponent = __decorate([
+                core_1.Component({
+                    selector: 'navbar',
+                    templateUrl: 'app/html/navbar.component.html',
+                    directives: [router_1.ROUTER_DIRECTIVES]
+                }), 
+                __metadata('design:paramtypes', [router_1.Router])
+            ], NavbarComponent);
             exports_1("NavbarComponent", NavbarComponent);
         }
     }

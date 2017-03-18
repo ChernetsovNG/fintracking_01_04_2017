@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/common', 'angular2/router', '../validator/basicValidators', '../service/user.service', '../classes/user'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/common', 'angular2/router', '../../validator/basicValidators', '../../service/user.service', '../../model/user'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -33,8 +33,8 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../vali
                 user_1 = user_1_1;
             }],
         execute: function() {
-            UserFormComponent = (function () {
-                function UserFormComponent(fb, _router, _routeParams, _userService) {
+            let UserFormComponent = class UserFormComponent {
+                constructor(fb, _router, _routeParams, _userService) {
                     this._router = _router;
                     this._routeParams = _routeParams;
                     this._userService = _userService;
@@ -46,45 +46,42 @@ System.register(['angular2/core', 'angular2/common', 'angular2/router', '../vali
                         enabled: []
                     });
                 }
-                UserFormComponent.prototype.ngOnInit = function () {
-                    var _this = this;
+                ngOnInit() {
                     var id = this._routeParams.get("id");
                     this.title = id ? "Edit User" : "New User";
                     if (!id)
                         return;
                     this._userService.getUser(id)
-                        .subscribe(function (user) { return _this.user = user; }, function (response) {
+                        .subscribe(user => this.user = user, response => {
                         if (response.status == 404) {
-                            _this._router.navigate(['NotFound']);
+                            this._router.navigate(['NotFound']);
                         }
                     });
-                };
-                UserFormComponent.prototype.save = function () {
-                    var _this = this;
+                }
+                save() {
                     var result;
                     if (this.user.id)
                         result = this._userService.updateUser(this.user);
                     else
                         result = this._userService.addUser(this.user);
-                    result.subscribe(function (x) {
-                        _this._router.navigate(['Users']);
+                    result.subscribe(x => {
+                        this._router.navigate(['Users']);
                     });
-                };
-                UserFormComponent.prototype.routerCanDeactivate = function (next, previous) {
+                }
+                routerCanDeactivate(next, previous) {
                     if (this.form.dirty) {
                         return confirm("You have unsaved changes. Are you sure you want to navigate away?");
                     }
                     return true;
-                };
-                UserFormComponent = __decorate([
-                    core_1.Component({
-                        templateUrl: '../html/user-form.component.html',
-                        providers: [user_service_1.UserService]
-                    }), 
-                    __metadata('design:paramtypes', [common_1.FormBuilder, router_1.Router, router_1.RouteParams, user_service_1.UserService])
-                ], UserFormComponent);
-                return UserFormComponent;
-            }());
+                }
+            };
+            UserFormComponent = __decorate([
+                core_1.Component({
+                    templateUrl: '../../html/user-form.component.html',
+                    providers: [user_service_1.UserService]
+                }), 
+                __metadata('design:paramtypes', [common_1.FormBuilder, router_1.Router, router_1.RouteParams, user_service_1.UserService])
+            ], UserFormComponent);
             exports_1("UserFormComponent", UserFormComponent);
         }
     }

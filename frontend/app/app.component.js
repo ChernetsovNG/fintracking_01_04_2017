@@ -1,4 +1,4 @@
-System.register(['angular2/core', 'angular2/router', './component/navbar.component', './component/home.component', './component/users.component', './component/posts.component', './component/user-form.component', './component/not-found.component'], function(exports_1, context_1) {
+System.register(['angular2/core', 'angular2/router', './component/navbar.component', './component/home.component', './component/user/users.component', './component/posts.component', './component/user/user-form.component', './component/not-found.component', "./component/auth/entry.component", "./shared/auth.activate.guard"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', 'angular2/router', './component/navbar.compone
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, navbar_component_1, home_component_1, users_component_1, posts_component_1, user_form_component_1, not_found_component_1;
+    var core_1, router_1, navbar_component_1, home_component_1, users_component_1, posts_component_1, user_form_component_1, not_found_component_1, entry_component_1, auth_activate_guard_1;
     var AppComponent;
     return {
         setters:[
@@ -37,31 +37,40 @@ System.register(['angular2/core', 'angular2/router', './component/navbar.compone
             },
             function (not_found_component_1_1) {
                 not_found_component_1 = not_found_component_1_1;
+            },
+            function (entry_component_1_1) {
+                entry_component_1 = entry_component_1_1;
+            },
+            function (auth_activate_guard_1_1) {
+                auth_activate_guard_1 = auth_activate_guard_1_1;
             }],
         execute: function() {
-            AppComponent = (function () {
-                function AppComponent() {
-                }
-                AppComponent = __decorate([
-                    router_1.RouteConfig([
-                        { path: '/', name: 'Home', component: home_component_1.HomeComponent },
-                        { path: '/users', name: 'Users', component: users_component_1.UsersComponent },
-                        { path: '/users/:id', name: 'EditUser', component: user_form_component_1.UserFormComponent },
-                        { path: '/users/new', name: 'NewUser', component: user_form_component_1.UserFormComponent },
-                        { path: '/posts', name: 'Posts', component: posts_component_1.PostsComponent },
-                        { path: '/not-found', name: 'NotFound', component: not_found_component_1.NotFoundComponent },
-                        { path: '/*other', name: 'Other', redirectTo: ['Home'] }
-                    ]),
-                    core_1.Component({
-                        selector: 'my-app',
-                        template: "\n        <navbar></navbar>\n        <div class=\"container\">\n            <router-outlet></router-outlet>\n        </div>\n    ",
-                        directives: [navbar_component_1.NavbarComponent, router_1.ROUTER_DIRECTIVES],
-                        providers: [users_component_1.UsersComponent]
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], AppComponent);
-                return AppComponent;
-            }());
+            let AppComponent = class AppComponent {
+            };
+            AppComponent = __decorate([
+                router_1.RouteConfig([
+                    { path: '/', name: 'Home', component: home_component_1.HomeComponent },
+                    { paht: '/login', name: 'Login', component: entry_component_1.EntryComponent },
+                    { path: '/users', name: 'Users', component: users_component_1.UsersComponent, canActivate: [auth_activate_guard_1.AuthActivateGuard] },
+                    { path: '/users/:id', name: 'EditUser', component: user_form_component_1.UserFormComponent },
+                    { path: '/users/new', name: 'NewUser', component: user_form_component_1.UserFormComponent },
+                    { path: '/posts', name: 'Posts', component: posts_component_1.PostsComponent },
+                    { path: '/not-found', name: 'NotFound', component: not_found_component_1.NotFoundComponent },
+                    { path: '/*other', name: 'Other', redirectTo: ['Home'] }
+                ]),
+                core_1.Component({
+                    selector: 'my-app',
+                    template: `
+        <navbar></navbar>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    `,
+                    directives: [navbar_component_1.NavbarComponent, router_1.ROUTER_DIRECTIVES],
+                    providers: [users_component_1.UsersComponent]
+                }), 
+                __metadata('design:paramtypes', [])
+            ], AppComponent);
             exports_1("AppComponent", AppComponent);
         }
     }

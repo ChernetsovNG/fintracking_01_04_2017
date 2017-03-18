@@ -18,17 +18,16 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            PostsComponent = (function () {
-                function PostsComponent() {
-                }
-                PostsComponent = __decorate([
-                    core_1.Component({
-                        template: "\n        <h1>Posts</h1>\n    "
-                    }), 
-                    __metadata('design:paramtypes', [])
-                ], PostsComponent);
-                return PostsComponent;
-            }());
+            let PostsComponent = class PostsComponent {
+            };
+            PostsComponent = __decorate([
+                core_1.Component({
+                    template: `
+        <h1>Posts</h1>
+    `
+                }), 
+                __metadata('design:paramtypes', [])
+            ], PostsComponent);
             exports_1("PostsComponent", PostsComponent);
         }
     }
