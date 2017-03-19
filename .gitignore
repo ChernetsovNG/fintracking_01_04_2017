@@ -4,8 +4,11 @@
 /FinTracking.iml
 /backend/log/fintracking.log
 /backend/fintracking-backend.iml
-/frontend/node_modules/
-/frontend/app/.DS_Store
+/frontend-angular2-beta/node_modules/
+/frontend-angular2-beta/app/.DS_Store
 /backend/target/
 
 
+Будет удалено backend/log/
+Будет удалено frontend/
+/frontend/node_modules/
