@@ -11,8 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var http_1 = require('@angular/http');
+var app_routing_module_1 = require('./app-routing.module');
+var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
+var in_memory_data_service_1 = require('./service/in-memory-data.service');
 var app_component_1 = require('./app.component');
+var users_component_1 = require('./component/users.component');
 var user_detail_component_1 = require('./component/user-detail.component');
+var user_service_1 = require('./service/user.service');
+var dashboard_component_1 = require("./component/dashboard.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -20,13 +27,23 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                http_1.HttpModule,
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService),
+                app_routing_module_1.AppRoutingModule
             ],
             declarations: [
                 app_component_1.AppComponent,
+                dashboard_component_1.DashboardComponent,
+                users_component_1.UsersComponent,
                 user_detail_component_1.UserDetailComponent
             ],
-            bootstrap: [app_component_1.AppComponent]
+            providers: [
+                user_service_1.UserService
+            ],
+            bootstrap: [
+                app_component_1.AppComponent
+            ]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

@@ -9,10 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var common_1 = require('@angular/common');
+require('rxjs/add/operator/switchMap');
+var user_service_1 = require('../service/user.service');
 var user_1 = require("../model/user");
 var UserDetailComponent = (function () {
-    function UserDetailComponent() {
+    function UserDetailComponent(userService, route, location) {
+        this.userService = userService;
+        this.route = route;
+        this.location = location;
     }
+    UserDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params
+            .switchMap(function (params) {
+            return _this.userService.getUser(+params['id']);
+        })
+            .subscribe(function (user) { return _this.user = user; });
+    };
+    UserDetailComponent.prototype.goBack = function () {
+        this.location.back();
+    };
+    UserDetailComponent.prototype.save = function () {
+        var _this = this;
+        this.userService.update(this.user)
+            .then(function () { return _this.goBack(); });
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', user_1.User)
@@ -20,9 +43,10 @@ var UserDetailComponent = (function () {
     UserDetailComponent = __decorate([
         core_1.Component({
             selector: 'user-detail',
-            template: "\n    <div *ngIf=\"user\">\n        <h2>{{user.name}} details</h2>\n        <div><label>id: </label>{{user.id}}</div>\n        <div>\n            <label>name: </label>\n            <input [(ngModel)]=\"user.name\" placeholder=\"name\">\n        </div>\n        <div>\n            <label>email: </label>{{user.email}}\n        </div>\n        <div>\n            <label>enabled: </label>{{user.enabled}}\n        </div>\n        <div>\n            <label>registered: </label>{{user.registered}}\n        </div>\n        <div>\n            <label>roles: </label>{{user.roles}}\n        </div>\n    </div> \n  "
+            templateUrl: 'app/html/user-detail.component.html',
+            styleUrls: ['app/style/user-detail.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [user_service_1.UserService, router_1.ActivatedRoute, common_1.Location])
     ], UserDetailComponent);
     return UserDetailComponent;
 }());
